@@ -15,9 +15,7 @@ on:
 jobs:
   build: 
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      
+    steps: 
       - name: Java build only
         uses: ./.github/actions/setup-java/maven-build
         with: 
