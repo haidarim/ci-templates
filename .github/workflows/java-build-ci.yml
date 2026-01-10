@@ -1,0 +1,25 @@
+name: BUILD 
+
+on: 
+  workflow_call:
+    inputs: 
+      java-version: 
+        type: string
+        required: true
+      maven-args: 
+        type: string 
+        default: "clean install -Dmaven.javadoc.skip=true -Dmaven.test.skip=true"
+      os: 
+        type: string
+        default: "ubuntu-latest"
+jobs:
+  build: 
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Java build only
+        uses: haidarim/ci-templates/.github/actions/setup-java/maven-build@v1
+        with: 
+          java-version: ${{ inputs.java-version }}
+          maven-args: ${{ inputs.maven-args }}

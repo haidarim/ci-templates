@@ -1,0 +1,20 @@
+name: Maven Build Only 
+
+inputs:
+  java-version:
+    required: true
+  maven-args:
+    deafult: clean install -Dmaven.javadoc.skip=true -Dmaven.test.skip=true
+
+
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-java@v4
+      with: 
+        distribution: temurin
+        java-version: ${{ $inputs.java-version }}
+        cache: maven
+
+    - run: mvn ${{ inputs.maven-args }}
+      shell: bash
