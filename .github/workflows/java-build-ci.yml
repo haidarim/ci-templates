@@ -14,10 +14,11 @@ on:
         default: "ubuntu-latest"
 jobs:
   build: 
-    runs-on: ubuntu-latest
+    runs-on: ${{ inputs.os }}
     steps: 
+      - uses: actions/checkout@v4
       - name: Java build only
-        uses: haidarim/ci-templates/.github/actions/setup-java/maven-build@v1.0.3
+        uses: haidarim/ci-templates/.github/actions/setup-java/maven-build@v1.0.4
         with: 
           java-version: ${{ inputs.java-version }}
           maven-args: ${{ inputs.maven-args }}
