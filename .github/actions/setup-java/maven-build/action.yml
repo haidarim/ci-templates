@@ -13,7 +13,7 @@ runs:
     - uses: actions/setup-java@v4
       with: 
         distribution: temurin
-        java-version: ${{ $inputs.java-version }}
+        java-version: ${{ inputs.java-version }}
         cache: maven
 
     - run: mvn ${{ inputs.maven-args }}
