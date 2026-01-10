@@ -19,7 +19,7 @@ jobs:
       - uses: actions/checkout@v4
       
       - name: Java build only
-        uses: haidarim/ci-templates/.github/actions/setup-java/maven-build@v1
+        uses: haidarim/ci-templates/.github/actions/setup-java/maven-build@v0.1
         with: 
           java-version: ${{ inputs.java-version }}
           maven-args: ${{ inputs.maven-args }}
