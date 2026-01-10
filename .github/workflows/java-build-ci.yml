@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     steps: 
       - name: Java build only
-        uses: ./.github/actions/setup-java/maven-build
+        uses: haidarim/ci-templates/.github/actions/setup-java/maven-build@v1.0.3
         with: 
           java-version: ${{ inputs.java-version }}
           maven-args: ${{ inputs.maven-args }}
