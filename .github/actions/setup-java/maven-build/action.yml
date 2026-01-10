@@ -4,7 +4,7 @@ inputs:
   java-version:
     required: true
   maven-args:
-    deafult: clean install -Dmaven.javadoc.skip=true -Dmaven.test.skip=true
+    default: clean install -Dmaven.javadoc.skip=true -Dmaven.test.skip=true
 
 
 runs:
