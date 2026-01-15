@@ -6,3 +6,8 @@
 
 **/.vscode
 
+
+*.key
+*.pem
+*.jks
+*.bak
