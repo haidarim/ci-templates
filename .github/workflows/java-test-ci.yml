@@ -18,7 +18,7 @@ jobs:
     steps: 
       - uses: actions/checkout@v4
       - name: Java tests
-        uses: haidarim/ci-templates/.github/actions/setup-java/maven-build@v1.1.4
+        uses: haidarim/ci-templates/.github/actions/setup-java/maven-build@v1.1.5
         with: 
           java-version: ${{ inputs.java-version }}
           maven-args: ${{ inputs.maven-args }}
