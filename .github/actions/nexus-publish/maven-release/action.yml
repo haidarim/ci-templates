@@ -19,7 +19,11 @@ runs:
     - name: Setup settings 
       run: | 
         mkdir -p ~/.m2
-        echo "$MAVEN_SETTINGS_XML" > ~/.m2/settings.xml
+        printf "%s" "${MAVEN_SETTINGS_XML}" \
+          | sed "s|\${SONATYPE_USERNAME}|$SONATYPE_USERNAME|g" \
+          | sed "s|\${SONATYPE_PASSWORD}|$SONATYPE_PASSWORD|g" \
+          | sed "s|\${GPG_PASSPHRASE}|$GPG_PASSPHRASE|g" \
+          > ~/.m2/settings.xml
       shell: bash
 
     - name: Configure GPG, no prompt take phrase as env
