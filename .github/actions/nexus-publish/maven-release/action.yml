@@ -21,19 +21,29 @@ runs:
         mkdir -p ~/.m2
         echo "$MAVEN_SETTINGS_XML" > ~/.m2/settings.xml
       shell: bash
+      env: 
+        MAVEN_SETTINGS_XML: ${{ secrets.MAVEN_SETTINGS_XML }}
 
-    - name: Import GPG key
-      run: |
-        echo "$GPG_PRIVATE_KEY" | base64 --decode | gpg --import
-      shell: bash
-    
     - name: Configure GPG, no prompt take phrase as env
       run: |
         mkdir -p ~/.gnupg
+        chmod 700 ~/.gnupg
         echo "pinentry-mode loopback" >> ~/.gnupg/gpg.conf
       shell: bash
 
-    - name: Run the mvn 
-      run: mvn ${{ inputs.maven-args }}
+    - name: Import GPG key
+      run: |
+        echo "$GPG_PRIVATE_KEY" | base64 --decode | gpg --batch --pinentry-mode loopback --import
       shell: bash
+      env: 
+        GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+    
+
+    - name: Run the mvn 
+      run: mvn ${{ inputs.maven-args }} -B -Dgpg.passphrase="${GPG_PASSPHRASE}"
+      shell: bash
+      env:
+        GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+        SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
+        SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
 
