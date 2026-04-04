@@ -1,0 +1,45 @@
+name: RELEASE
+
+on: 
+  workflow_call:
+    inputs: 
+      java-version: 
+        type: string
+        required: true
+      maven-args: 
+        type: string 
+        default: "clean deploy -Prelease"
+      os: 
+        type: string
+        default: "ubuntu-latest"
+    secrets:
+      GPG_PRIVATE_KEY: 
+        required: true
+      GPG_PASSPHRASE:
+        required: true
+      MAVEN_SETTINGS_XML: 
+        required: true
+      SONATYPE_USERNAME:
+        required: true
+      SONATYPE_PASSWORD: 
+        required: true
+
+jobs:
+  release: 
+    runs-on: ${{ inputs.os }}
+    steps: 
+      - uses: actions/checkout@v4
+
+      - name: Release Job 
+        uses: haidarim/ci-templates/.github/actions/nexus-publish/maven-release@v1.1.3
+        with: 
+          java-version: ${{ inputs.java-version }}
+          maven-args: ${{ inputs.maven-args }}
+
+        env: 
+          GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+          MAVEN_SETTINGS_XML: ${{ secrets.MAVEN_SETTINGS_XML }}
+          SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
+          SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
+

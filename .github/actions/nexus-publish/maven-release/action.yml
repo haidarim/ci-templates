@@ -1,0 +1,39 @@
+name: Maven release action
+
+inputs:
+  java-version:
+    required: true
+  maven-args:
+    default: clean install -Dmaven.javadoc.skip=true -Dmaven.test.skip=true
+
+
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-java@v4
+      with: 
+        distribution: temurin
+        java-version: ${{ inputs.java-version }}
+        cache: maven
+
+    - name: Setup settings 
+      run: | 
+        mkdir -p ~/.m2
+        echo "$MAVEN_SETTINGS_XML" > ~/.m2/settings.xml
+      shell: bash
+
+    - name: Import GPG key
+      run: |
+        echo "$GPG_PRIVATE_KEY" | base64 --decode | gpg --import
+      shell: bash
+    
+    - name: Configure GPG, no prompt take phrase as env
+      run: |
+        mkdir -p ~/.gnupg
+        echo "pinentry-mode loopback" >> ~/.gnupg/gpg.conf
+      shell: bash
+
+    - name: Run the mvn 
+      run: mvn ${{ inputs.maven-args }}
+      shell: bash
+
