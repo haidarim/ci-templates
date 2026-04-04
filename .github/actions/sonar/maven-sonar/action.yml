@@ -1,0 +1,31 @@
+name: Maven Sonar action
+
+inputs:
+  java-version:
+    required: true
+  project-key:
+    required: true
+  organization:
+    required: true
+  host-url:
+    default: https://sonarcloud.io
+
+
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-java@v4
+      with: 
+        distribution: temurin
+        java-version: ${{ inputs.java-version }}
+        cache: maven
+
+    - name: Run Sonar
+      run: |
+        mvn verify sonar:sonar \
+          -Dsonar.projectKey=${{ inputs.project-key }} \
+          -Dsonar.organization=${{ inputs.organization }} \
+          -Dsonar.host.url=${{ inputs.host-url }} \
+          -Dsonar.login=$SONAR_TOKEN \
+          -Dsonar.qualitygate.wait=true
+      shell: bash

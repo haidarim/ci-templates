@@ -1,0 +1,38 @@
+name: SONAR
+
+on: 
+  workflow_call:
+    inputs: 
+      java-version: 
+        type: string
+        required: true
+      os: 
+        type: string
+        default: "ubuntu-latest"
+      project-key:        
+        type: string
+        required: true
+      organization:        
+        type: string
+        required: true
+      host-url:
+        type: string
+        default: "https://sonarcloud.io"
+    secrets: 
+      SONAR_TOKEN: 
+        required: true
+jobs:
+  sonar: 
+    runs-on: ${{ inputs.os }}
+    steps: 
+      - uses: actions/checkout@v4
+      - name: Sonar
+        uses: haidarim/ci-templates/.github/actions/sonar/maven-sonar@v1.1.8
+        with: 
+          java-version: ${{ inputs.java-version }}
+          project-key: ${{ inputs.project-key }}
+          organization: ${{ inputs.organization }}
+          host-url: ${{ inputs.host-url }}
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        
