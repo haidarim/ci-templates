@@ -28,6 +28,6 @@ runs:
           -Dsonar.projectKey=${{ inputs.project-key }} \
           -Dsonar.organization=${{ inputs.organization }} \
           -Dsonar.host.url=${{ inputs.host-url }} \
-          -Dsonar.login=$SONAR_TOKEN \
+          -Dsonar.token=$SONAR_TOKEN \
           -Dsonar.qualitygate.wait=true
       shell: bash
