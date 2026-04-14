@@ -27,7 +27,7 @@ jobs:
     steps: 
       - uses: actions/checkout@v4
       - name: Sonar
-        uses: haidarim/ci-templates/.github/actions/sonar/maven-sonar@v1.1.8
+        uses: haidarim/ci-templates/.github/actions/sonar/maven-sonar@v1.1.9
         with: 
           java-version: ${{ inputs.java-version }}
           project-key: ${{ inputs.project-key }}

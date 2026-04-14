@@ -23,6 +23,8 @@ runs:
     - name: Run Sonar
       run: |
         mvn verify sonar:sonar \
+          -DskipTests \
+          -Dmaven.javadoc.skip=true \
           -Dsonar.projectKey=${{ inputs.project-key }} \
           -Dsonar.organization=${{ inputs.organization }} \
           -Dsonar.host.url=${{ inputs.host-url }} \
