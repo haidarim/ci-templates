@@ -1,13 +1,21 @@
-MIT License
+Copyright (c) 2026 haidarim
 
-Copyright (c) 2026 haidarim 
+All rights reserved.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+Permission is granted to view and use this software for personal,
+non-commercial purposes only.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+You may NOT:
+- copy, redistribute, or republish this software
+- modify or create derivative works for independent use
+- use this software in any commercial product or service
+
+Exception:
+You are allowed to fork and modify this repository solely for the purpose
+of contributing improvements, bug fixes, or suggestions back to the original
+project via pull requests.
+
+All contributions must be made to this repository and may not be used
+independently without explicit written permission from the author.
+
+Commercial use is strictly prohibited without prior written consent.
