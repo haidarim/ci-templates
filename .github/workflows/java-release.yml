@@ -8,7 +8,7 @@ on:
         required: true
       maven-args: 
         type: string 
-        default: "clean deploy -Prelease -Dmaven.javadoc.skip=true -Dmaven.test.skip=true"
+        default: "clean deploy -Prelease -Dmaven.test.skip=true"
       os: 
         type: string
         default: "ubuntu-latest"
