@@ -4,7 +4,7 @@ inputs:
   java-version:
     required: true
   maven-args:
-    default: clean deploy -Prelease -Dmaven.javadoc.skip=true -Dmaven.test.skip=true
+    default: mvn clean deploy -Prelease -DskipTests
 
 
 runs:
